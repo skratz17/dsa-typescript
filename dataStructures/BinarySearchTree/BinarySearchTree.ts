@@ -70,4 +70,102 @@ export class BinarySearchTree<T> {
 
     return node;
   }
+
+  inorder() {
+    const arr: T[] = [];
+    this._inorder(this.root, arr);
+    return arr;
+  }
+
+  _inorder(node: BinarySearchTreeNode<T>, arr: T[]) {
+    if(!node) return;
+
+    this._inorder(node.left, arr);
+    arr.push(node.val);
+    this._inorder(node.right, arr);
+  }
+
+  inorderIterative() {
+    const arr: T[] = [];
+    const stack: BinarySearchTreeNode<T>[] = [];
+    let node = this.root;
+    while(node || stack.length) {
+      while(node) {
+        stack.push(node);
+        node = node.left;
+      }
+
+      node = stack.pop();
+      arr.push(node.val);
+      node = node.right;
+    }
+
+    return arr;
+  }
+
+  preorder() {
+    const arr: T[] = [];
+    this._preorder(this.root, arr);
+    return arr;
+  }
+
+  _preorder(node: BinarySearchTreeNode<T>, arr: T[]) {
+    if(!node) return;
+
+    arr.push(node.val);
+    this._preorder(node.left, arr);
+    this._preorder(node.right, arr);
+  }
+
+  preorderIterative() {
+    const arr: T[] = [];
+    const stack: BinarySearchTreeNode<T>[] = [];
+
+    let node = this.root;
+    while(node || stack.length) {
+      while(node) {
+        arr.push(node.val);
+        if(node.right) stack.push(node.right);
+        node = node.left;
+      }
+
+      node = stack.pop();
+    }
+
+    return arr;
+  }
+
+  postorder() {
+    const arr: T[] = [];
+    this._postorder(this.root, arr);
+    return arr;
+  }
+
+  _postorder(node: BinarySearchTreeNode<T>, arr: T[]) {
+    if(!node) return;
+
+    this._postorder(node.left, arr);
+    this._postorder(node.right, arr);
+    arr.push(node.val);
+  }
+
+  postorderIterative() {
+    const arr: BinarySearchTreeNode<T>[] = [];
+    const stack: BinarySearchTreeNode<T>[] = [];
+
+    let node = this.root;
+    while(node || stack.length) {
+      while(node) {
+        stack.push(node);
+        if(node.right && node.right === arr[arr.length - 1]) break;
+        if(node.right) stack.push(node.right);
+        node = node.left;
+      }
+
+      arr.push(stack.pop());
+      node = stack.pop();
+    }
+
+    return arr.map(node => node.val);
+  }
 }
