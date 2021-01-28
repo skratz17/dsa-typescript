@@ -35,7 +35,7 @@ export class BinarySearchTree<T> {
   _search(node: BinarySearchTreeNode<T>, val: T) {
     if(!node) return null;
     
-    if(node.val === val) return node;
+    if(this.compare(node.val, val) === 0) return node;
     else if(this.compare(node.val, val) > 0) return this._search(node.left, val);
     else return this._search(node.right, val);
   }
@@ -47,7 +47,7 @@ export class BinarySearchTree<T> {
   _delete(node: BinarySearchTreeNode<T>, val: T) {
     if(!node) return null;
 
-    if(node.val === val) {
+    if(this.compare(node.val, val) === 0) {
       // delete leaf node
       if(node.left === null && node.right === null) return null;
 
