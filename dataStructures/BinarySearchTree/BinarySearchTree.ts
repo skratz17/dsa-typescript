@@ -134,4 +134,38 @@ export class BinarySearchTree<T> {
 
     return arr;
   }
+
+  postorder() {
+    const arr: T[] = [];
+    this._postorder(this.root, arr);
+    return arr;
+  }
+
+  _postorder(node: BinarySearchTreeNode<T>, arr: T[]) {
+    if(!node) return;
+
+    this._postorder(node.left, arr);
+    this._postorder(node.right, arr);
+    arr.push(node.val);
+  }
+
+  postorderIterative() {
+    const arr: BinarySearchTreeNode<T>[] = [];
+    const stack: BinarySearchTreeNode<T>[] = [];
+
+    let node = this.root;
+    while(node || stack.length) {
+      while(node) {
+        stack.push(node);
+        if(node.right && node.right === arr[arr.length - 1]) break;
+        if(node.right) stack.push(node.right);
+        node = node.left;
+      }
+
+      arr.push(stack.pop());
+      node = stack.pop();
+    }
+
+    return arr.map(node => node.val);
+  }
 }
