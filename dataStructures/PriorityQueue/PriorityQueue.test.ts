@@ -86,4 +86,10 @@ describe('priorty queue functionality', () => {
     expect(max).toEqual({ id: 3, value: 1 });
     expect(maxPriorityQueue.size()).toEqual(0);
   });
+
+  test('remove from empty priority queue throws error', () => {
+    const minPriorityQueue = new PriorityQueue<number>((a, b) => a - b);
+
+    expect(() => minPriorityQueue.remove()).toThrow('Cannot remove from empty priority queue.');
+  });
 });

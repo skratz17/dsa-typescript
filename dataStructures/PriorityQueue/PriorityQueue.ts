@@ -19,7 +19,14 @@ export class PriorityQueue<T> {
   }
 
   remove() {
-    if(this.size() === 1) return this.heap.pop();
+    if(this.size() <= 0) {
+      throw new Error('Cannot remove from empty priority queue.');
+    }
+
+    if(this.size() === 1) {
+      return this.heap.pop();
+    }
+
     let index = 1;
     const removedNode = this.heap[index];
     this.heap[index] = this.heap.pop();
