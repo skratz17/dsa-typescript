@@ -27,4 +27,16 @@ export class BinarySearchTree<T> {
 
     return node;
   }
+
+  search(val: T) {
+    return this._search(this.root, val);
+  }
+
+  _search(node: BinarySearchTreeNode<T>, val: T) {
+    if(!node) return null;
+    
+    if(node.val === val) return node;
+    else if(this.compare(node.val, val) > 0) return this._search(node.left, val);
+    else return this._search(node.right, val);
+  }
 }
