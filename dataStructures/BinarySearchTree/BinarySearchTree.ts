@@ -70,4 +70,36 @@ export class BinarySearchTree<T> {
 
     return node;
   }
+
+  inorder() {
+    const arr = [];
+    this._inorder(this.root, arr);
+    return arr;
+  }
+
+  _inorder(node: BinarySearchTreeNode<T>, arr) {
+    if(!node) return;
+
+    this._inorder(node.left, arr);
+    arr.push(node.val);
+    this._inorder(node.right, arr);
+  }
+
+  inorderIterative() {
+    const arr = [];
+    const stack = [];
+    let node = this.root;
+    while(node || stack.length) {
+      while(node) {
+        stack.push(node);
+        node = node.left;
+      }
+
+      node = stack.pop();
+      arr.push(node.val);
+      node = node.right;
+    }
+
+    return arr;
+  }
 }
