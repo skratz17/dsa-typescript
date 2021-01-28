@@ -72,12 +72,12 @@ export class BinarySearchTree<T> {
   }
 
   inorder() {
-    const arr = [];
+    const arr: T[] = [];
     this._inorder(this.root, arr);
     return arr;
   }
 
-  _inorder(node: BinarySearchTreeNode<T>, arr) {
+  _inorder(node: BinarySearchTreeNode<T>, arr: T[]) {
     if(!node) return;
 
     this._inorder(node.left, arr);
@@ -86,8 +86,8 @@ export class BinarySearchTree<T> {
   }
 
   inorderIterative() {
-    const arr = [];
-    const stack = [];
+    const arr: T[] = [];
+    const stack: BinarySearchTreeNode<T>[] = [];
     let node = this.root;
     while(node || stack.length) {
       while(node) {
@@ -98,6 +98,38 @@ export class BinarySearchTree<T> {
       node = stack.pop();
       arr.push(node.val);
       node = node.right;
+    }
+
+    return arr;
+  }
+
+  preorder() {
+    const arr: T[] = [];
+    this._preorder(this.root, arr);
+    return arr;
+  }
+
+  _preorder(node: BinarySearchTreeNode<T>, arr: T[]) {
+    if(!node) return;
+
+    arr.push(node.val);
+    this._preorder(node.left, arr);
+    this._preorder(node.right, arr);
+  }
+
+  preorderIterative() {
+    const arr: T[] = [];
+    const stack: BinarySearchTreeNode<T>[] = [];
+
+    let node = this.root;
+    while(node || stack.length) {
+      while(node) {
+        arr.push(node.val);
+        if(node.right) stack.push(node.right);
+        node = node.left;
+      }
+
+      node = stack.pop();
     }
 
     return arr;

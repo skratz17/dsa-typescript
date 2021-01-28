@@ -188,4 +188,28 @@ describe('unbalanced binary search tree functionality', () => {
 
     expect(bst.inorderIterative()).toEqual([ 1, 3, 4, 5, 10 ]);
   });
+
+  test('recursive preorder traversal', () => {
+    const bst = new BinarySearchTree<number>((a, b) => a - b);
+
+    bst.insert(5);
+    bst.insert(3);
+    bst.insert(10);
+    bst.insert(1);
+    bst.insert(4);
+
+    expect(bst.preorder()).toEqual([ 5, 3, 1, 4, 10 ]);
+  });
+
+  test('iterative preorder traversal', () => {
+    const bst = new BinarySearchTree<number>((a, b) => a - b);
+
+    bst.insert(5);
+    bst.insert(3);
+    bst.insert(10);
+    bst.insert(1);
+    bst.insert(4);
+
+    expect(bst.preorderIterative()).toEqual([ 5, 3, 1, 4, 10 ]);
+  });
 });
