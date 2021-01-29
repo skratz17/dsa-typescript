@@ -30,4 +30,53 @@ describe('linked list', () => {
     expect(list.size).toEqual(3);
     expect(list.toArray()).toEqual([ 1, 3, 2 ]);
   });
+
+  test('remove elements from end of linked list until empty', () => {
+    const list = new LinkedList<number>();
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+    
+    expect(list.size).toEqual(3);
+    expect(list.remove()).toEqual(3);
+
+    expect(list.size).toEqual(2);
+    expect(list.remove()).toEqual(2);
+
+    expect(list.size).toEqual(1);
+    expect(list.remove()).toEqual(1);
+
+    expect(list.size).toEqual(0);
+  });
+
+  test('remove elements from beginning of linked list until empty', () => {
+    const list = new LinkedList<number>();
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+    
+    expect(list.size).toEqual(3);
+    expect(list.remove(0)).toEqual(1);
+
+    expect(list.size).toEqual(2);
+    expect(list.remove(0)).toEqual(2);
+
+    expect(list.size).toEqual(1);
+    expect(list.remove(0)).toEqual(3);
+
+    expect(list.size).toEqual(0);
+  });
+
+  test('remove element from mid index of linked list', () => {
+    const list = new LinkedList<number>();
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+
+    expect(list.size).toEqual(3);
+    expect(list.remove(1)).toEqual(2);
+
+    expect(list.size).toEqual(2);
+    expect(list.toArray()).toEqual([ 1, 3 ]);
+  });
 });

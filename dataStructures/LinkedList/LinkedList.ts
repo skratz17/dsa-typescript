@@ -34,6 +34,29 @@ export class LinkedList<T> {
     this.size++;
   }
 
+  remove(idx = this.size - 1) {
+    if(idx >= this.size) idx = this.size - 1;
+    if(idx < 0) idx = 0;
+
+    let prev = null;
+    let ptr = this.root;
+
+    for(let i = 0; i < idx; i++) {
+      prev = ptr;
+      ptr = ptr.next;
+    }
+
+    if(prev === null) {
+      this.root = this.root ? this.root.next : null;
+    }
+    else {
+      prev.next = ptr.next;
+    }
+
+    this.size--;
+    return ptr.val;
+  }
+
   toArray() {
     const arr: T[] = [];
     let ptr = this.root;
