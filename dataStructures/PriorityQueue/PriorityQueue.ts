@@ -7,7 +7,7 @@ export class PriorityQueue<T> {
     this.compare = compareFunction;
   }
 
-  insert(node: T) {
+  insert(node: T): void {
     let index = this.heap.length;
     this.heap.push(node);
     let parentIndex = Math.floor(index / 2);
@@ -18,7 +18,7 @@ export class PriorityQueue<T> {
     }
   }
 
-  remove() {
+  remove(): T {
     if(this.size() <= 0) {
       throw new Error('Cannot remove from empty priority queue.');
     }
@@ -44,11 +44,11 @@ export class PriorityQueue<T> {
     return removedNode;
   }
 
-  size() {
+  size(): number {
     return this.heap.length - 1;
   }
 
-  swap(i: number, j: number) {
+  swap(i: number, j: number): void {
     const tmp = this.heap[i];
     this.heap[i] = this.heap[j];
     this.heap[j] = tmp;

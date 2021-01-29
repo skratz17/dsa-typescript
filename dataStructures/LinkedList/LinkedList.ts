@@ -9,12 +9,12 @@ export class LinkedList<T> {
     this.size = 0;
   }
 
-  insert(val: T, idx = this.size) {
+  insert(val: T, idx = this.size): void {
     if(idx < 0) idx = 0;
     if(idx > this.size) idx = this.size;
 
-    let ptr = this.root;
-    let prev = null;
+    let ptr: Node<T> = this.root;
+    let prev: Node<T> = null;
 
     for(let i = 0; i < idx; i++) {
       prev = ptr;
@@ -34,12 +34,12 @@ export class LinkedList<T> {
     this.size++;
   }
 
-  remove(idx = this.size - 1) {
+  remove(idx = this.size - 1): T {
     if(idx >= this.size) idx = this.size - 1;
     if(idx < 0) idx = 0;
 
-    let prev = null;
-    let ptr = this.root;
+    let prev: Node<T> = null;
+    let ptr: Node<T> = this.root;
 
     for(let i = 0; i < idx; i++) {
       prev = ptr;
@@ -59,7 +59,7 @@ export class LinkedList<T> {
 
   toArray() {
     const arr: T[] = [];
-    let ptr = this.root;
+    let ptr: Node<T> = this.root;
     while(ptr) {
       arr.push(ptr.val);
       ptr = ptr.next;

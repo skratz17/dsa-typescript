@@ -9,11 +9,11 @@ export class TrieNode<T> {
     this.children = new Map<string, TrieNode<T>>();
   }
 
-  addChild(char: string, node: TrieNode<T>) {
+  addChild(char: string, node: TrieNode<T>): void {
     this.children.set(char, node);
   }
 
-  getChild(char: string) {
+  getChild(char: string): TrieNode<T> {
     return this.children.has(char) ? this.children.get(char) : null;
   }
 }
