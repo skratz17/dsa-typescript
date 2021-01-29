@@ -39,3 +39,19 @@ export const expectSortArrayDesc = (sortFunction: SortFunc<number>) => {
 
   expect(arr).toEqual([ 5, 4, 3, 2, 1 ]);
 };
+
+export const sortHellaArrays = (sortFunction: SortFunc<number>) => {
+  for(let i = 0; i < 10; i++) {
+    const arr = [];
+    for(let j = 0; j < 1000 + i; j++) {
+      arr.push(Math.random() * 100);
+    }
+
+    const copy = [ ...arr ];
+    copy.sort((a, b) => a - b);
+
+    sortFunction(arr, (a, b) => a - b);
+
+    expect(arr).toEqual(copy);
+  }
+};

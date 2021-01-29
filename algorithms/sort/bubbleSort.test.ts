@@ -1,5 +1,5 @@
 import { bubbleSort } from './bubbleSort';
-import { expectSortArray, expectSortArrayDesc, expectSortEmptyArray, expectSortSingleElemArray, expectSortTwoElemArray } from './basicSortExpectations';
+import { expectSortArray, expectSortArrayDesc, expectSortEmptyArray, expectSortSingleElemArray, expectSortTwoElemArray, sortHellaArrays } from './basicSortExpectations';
 
 describe('bubble sort', () => {
   test('sorts array of numbers ascending', () => {
@@ -20,5 +20,9 @@ describe('bubble sort', () => {
 
   test('handles empty array', () => {
     expectSortEmptyArray(bubbleSort);
+  });
+
+  test('handles sorting hella arrays', () => {
+    sortHellaArrays(bubbleSort);
   });
 });

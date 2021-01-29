@@ -1,5 +1,5 @@
 import { heapSort } from './heapSort';
-import { expectSortArray, expectSortArrayDesc, expectSortEmptyArray, expectSortSingleElemArray, expectSortTwoElemArray } from './basicSortExpectations';
+import { expectSortArray, expectSortArrayDesc, expectSortEmptyArray, expectSortSingleElemArray, expectSortTwoElemArray, sortHellaArrays } from './basicSortExpectations';
 
 describe('heap sort', () => {
   test('sorts array of numbers ascending', () => {
@@ -20,5 +20,9 @@ describe('heap sort', () => {
 
   test('handles empty array', () => {
     expectSortEmptyArray(heapSort);
+  });
+
+  test('handles sorting hella arrays', () => {
+    sortHellaArrays(heapSort);
   });
 });

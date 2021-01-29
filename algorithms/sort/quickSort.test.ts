@@ -1,5 +1,5 @@
 import { quickSort } from './quickSort';
-import { expectSortArray, expectSortArrayDesc, expectSortEmptyArray, expectSortSingleElemArray, expectSortTwoElemArray } from './basicSortExpectations';
+import { expectSortArray, expectSortArrayDesc, expectSortEmptyArray, expectSortSingleElemArray, expectSortTwoElemArray, sortHellaArrays } from './basicSortExpectations';
 
 describe('quick sort', () => {
   test('sorts array of numbers ascending', () => {
@@ -20,5 +20,9 @@ describe('quick sort', () => {
 
   test('handles empty array', () => {
     expectSortEmptyArray(quickSort);
+  });
+
+  test('handles sorting hella arrays', () => {
+    sortHellaArrays(quickSort);
   });
 });
