@@ -1,5 +1,5 @@
 import { mergeSort } from './mergeSort';
-import { expectSortArray, expectSortArrayDesc, expectSortEmptyArray, expectSortSingleElemArray, expectSortTwoElemArray } from './basicSortExpectations';
+import { expectSortArray, expectSortArrayDesc, expectSortEmptyArray, expectSortSingleElemArray, expectSortTwoElemArray, sortHellaArrays } from './basicSortExpectations';
 
 describe('merge sort', () => {
   test('sorts array of numbers ascending', () => {
@@ -20,5 +20,9 @@ describe('merge sort', () => {
 
   test('handles empty array', () => {
     expectSortEmptyArray(mergeSort);
+  });
+
+  test('handles sorting hella arrays', () => {
+    sortHellaArrays(mergeSort);
   });
 });
