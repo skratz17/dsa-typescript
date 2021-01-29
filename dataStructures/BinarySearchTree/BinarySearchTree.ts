@@ -9,11 +9,11 @@ export class BinarySearchTree<T> {
     this.compare = compareFunction;
   }
 
-  insert(val: T) {
+  insert(val: T): void {
     this.root = this._insert(this.root, val);
   }
 
-  _insert(node: BinarySearchTreeNode<T>, val: T) {
+  _insert(node: BinarySearchTreeNode<T>, val: T): BinarySearchTreeNode<T> {
     if(node === null) {
       return new BinarySearchTreeNode<T>(val);
     }
@@ -28,11 +28,11 @@ export class BinarySearchTree<T> {
     return node;
   }
 
-  search(val: T) {
+  search(val: T): BinarySearchTreeNode<T> {
     return this._search(this.root, val);
   }
 
-  _search(node: BinarySearchTreeNode<T>, val: T) {
+  _search(node: BinarySearchTreeNode<T>, val: T): BinarySearchTreeNode<T> {
     if(!node) return null;
     
     if(this.compare(node.val, val) === 0) return node;
@@ -40,11 +40,11 @@ export class BinarySearchTree<T> {
     else return this._search(node.right, val);
   }
 
-  delete(val: T) {
+  delete(val: T): void {
     this.root = this._delete(this.root, val);
   }
 
-  _delete(node: BinarySearchTreeNode<T>, val: T) {
+  _delete(node: BinarySearchTreeNode<T>, val: T): BinarySearchTreeNode<T> {
     if(!node) return null;
 
     if(this.compare(node.val, val) === 0) {
@@ -71,13 +71,13 @@ export class BinarySearchTree<T> {
     return node;
   }
 
-  inorder() {
+  inorder(): T[] {
     const arr: T[] = [];
     this._inorder(this.root, arr);
     return arr;
   }
 
-  _inorder(node: BinarySearchTreeNode<T>, arr: T[]) {
+  _inorder(node: BinarySearchTreeNode<T>, arr: T[]): void {
     if(!node) return;
 
     this._inorder(node.left, arr);
@@ -85,7 +85,7 @@ export class BinarySearchTree<T> {
     this._inorder(node.right, arr);
   }
 
-  inorderIterative() {
+  inorderIterative(): T[] {
     const arr: T[] = [];
     const stack: BinarySearchTreeNode<T>[] = [];
     let node = this.root;
@@ -103,13 +103,13 @@ export class BinarySearchTree<T> {
     return arr;
   }
 
-  preorder() {
+  preorder(): T[] {
     const arr: T[] = [];
     this._preorder(this.root, arr);
     return arr;
   }
 
-  _preorder(node: BinarySearchTreeNode<T>, arr: T[]) {
+  _preorder(node: BinarySearchTreeNode<T>, arr: T[]): void {
     if(!node) return;
 
     arr.push(node.val);
@@ -117,7 +117,7 @@ export class BinarySearchTree<T> {
     this._preorder(node.right, arr);
   }
 
-  preorderIterative() {
+  preorderIterative(): T[] {
     const arr: T[] = [];
     const stack: BinarySearchTreeNode<T>[] = [];
 
@@ -135,13 +135,13 @@ export class BinarySearchTree<T> {
     return arr;
   }
 
-  postorder() {
+  postorder(): T[] {
     const arr: T[] = [];
     this._postorder(this.root, arr);
     return arr;
   }
 
-  _postorder(node: BinarySearchTreeNode<T>, arr: T[]) {
+  _postorder(node: BinarySearchTreeNode<T>, arr: T[]): void {
     if(!node) return;
 
     this._postorder(node.left, arr);
@@ -149,7 +149,7 @@ export class BinarySearchTree<T> {
     arr.push(node.val);
   }
 
-  postorderIterative() {
+  postorderIterative(): T[] {
     const arr: BinarySearchTreeNode<T>[] = [];
     const stack: BinarySearchTreeNode<T>[] = [];
 

@@ -7,7 +7,7 @@ export class Trie<T> {
     this.root = new TrieNode<T>();
   }
 
-  insert(word: string, val: T) {
+  insert(word: string, val: T): void {
     let node = this.root;
 
     for(let i = 0; i < word.length; i++) {
@@ -19,7 +19,7 @@ export class Trie<T> {
     node.val = val;
   }
 
-  search(word: string) {
+  search(word: string): T {
     let node = this.root;
 
     for(let i = 0; i < word.length; i++) {
