@@ -33,9 +33,9 @@ export const expectSortArray = (sortFunction: SortFunc<number>) => {
 };
 
 export const expectSortArrayDesc = (sortFunction: SortFunc<number>) => {
-  const arr = [ 3, 2, 4, 1 ];
+  const arr = [ 3, 2, 4, 1, 5 ];
 
   sortFunction(arr, (a, b) => b - a);
 
-  expect(arr).toEqual([ 4, 3, 2, 1 ]);
+  expect(arr).toEqual([ 5, 4, 3, 2, 1 ]);
 };
