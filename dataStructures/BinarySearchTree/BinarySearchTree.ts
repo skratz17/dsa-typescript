@@ -168,4 +168,47 @@ export class BinarySearchTree<T> {
 
     return arr.map(node => node.val);
   }
+
+  serialize(): string {
+    let serialization = [];
+    let queue = [ this.root ];
+    while(true) {
+      const level = [];
+      while(queue.length) {
+        const node = queue.shift();
+        serialization.push(node ? node.val : 'null');
+        if(node) {
+          level.push(node.left);
+          level.push(node.right);
+        }
+        else {
+          level.push(null);
+          level.push(null);
+        }
+      }
+      if(!level.every(val => val === null)) queue = level;
+      else break;
+    }
+    return serialization.join(',');
+  }
+
+  static deserialize(serialization: string, compareFunction: (a: number, b: number) => number): BinarySearchTree<number> {
+    const bst = new BinarySearchTree<number>(compareFunction);
+
+    const root = BinarySearchTree._deserialize(serialization.split(','), 0);
+    bst.root = root;
+
+    return bst;
+  }
+
+  static _deserialize(serialization: string[], idx: number): BinarySearchTreeNode<number> {
+    if(idx >= serialization.length || serialization[idx] === 'null') return null;
+
+    const node = new BinarySearchTreeNode<number>(Number(serialization[idx]));
+
+    node.left = BinarySearchTree._deserialize(serialization, idx * 2 + 1);
+    node.right = BinarySearchTree._deserialize(serialization, idx * 2 + 2);
+
+    return node;
+  }
 }
